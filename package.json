@@ -22,6 +22,7 @@
     "nodemailer": "^6.10.0",
     "socket.io": "^4.8.1",
     "uid-safe": "^2.1.5"
+    "@remix-run/dev"  
   },
   "overrides": {
     "base64-url": "2.0.0"
