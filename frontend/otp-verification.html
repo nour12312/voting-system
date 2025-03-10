@@ -1,0 +1,44 @@
+<!-- otp-verification.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Verify OTP</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Include navigation bar -->
+  <div class="container mt-5">
+    <h1>Verify OTP</h1>
+    <form id="otpForm">
+      <div class="mb-3">
+        <input type="text" class="form-control" id="otp" placeholder="Enter OTP" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Verify OTP</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('otpForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const otp = document.getElementById('otp').value;
+      
+      try {
+        const response = await fetch('/api/auth/verify-otp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ otp })
+        });
+        
+        if (response.ok) {
+          alert('OTP verified! You can now vote.');
+          window.location.href = '/vote'; // Redirect to voting page
+        } else {
+          alert('Invalid OTP. Try again.');
+        }
+      } catch (err) {
+        console.error('Verification failed:', err);
+      }
+    });
+  </script>
+</body>
+</html>
